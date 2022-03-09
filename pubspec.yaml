@@ -1,0 +1,122 @@
+name: test_ordo_mobile
+description: Test Ordo Mobile
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  #state management, navigator, etc
+  get: ^4.1.4
+  #single local storage
+  shared_preferences: ^2.0.5
+  #cached image with loading indicator and error widget
+  cached_network_image: ^3.0.0
+  #load svg image
+  flutter_svg: ^0.21.0+1
+  intl: ^0.17.0
+  persistent_bottom_nav_bar: ^4.0.2
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.9.0
+  flutter_test:
+    sdk: flutter
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/kukelola_logo.png"
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Black.otf
+          weight: 900
+        - asset: assets/fonts/Poppins-ExtraBold.otf
+          weight: 800
+        - asset: assets/fonts/Poppins-Bold.otf
+          weight: 700
+        - asset: assets/fonts/Poppins-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Poppins-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Poppins-Light.otf
+          weight: 300
+        - asset: assets/fonts/Poppins-ExtraLight.otf
+          weight: 200
+        - asset: assets/fonts/Poppins-Thin.otf
+          weight: 100
+    - family: Biryani
+      fonts:
+        - asset: assets/fonts/Biryani-Heavy.otf
+          weight: 900
+        - asset: assets/fonts/Biryani-ExtraBold.otf
+          weight: 800
+        - asset: assets/fonts/Biryani-Bold.otf
+          weight: 700
+        - asset: assets/fonts/Biryani-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Biryani-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Biryani-Light.otf
+          weight: 300
+        - asset: assets/fonts/Biryani-UltraLight.otf
+          weight: 200
+    - family: NunitoSans
+      fonts:
+        - asset: assets/fonts/NunitoSans-Black.ttf
+          weight: 900
+        - asset: assets/fonts/NunitoSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/NunitoSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/NunitoSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/NunitoSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/NunitoSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/NunitoSans-ExtraLight.ttf
+          weight: 200
+    - family: GothamRounded
+      fonts:
+        - asset: assets/fonts/GothamRounded-Bold.otf
+          weight: 700
+        - asset: assets/fonts/GothamRounded-Medium.otf
+          weight: 500
+        - asset: assets/fonts/GothamRounded-Book.otf
+          weight: 400
+        - asset: assets/fonts/GothamRounded-Light.otf
+          weight: 300
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto-Thin.ttf
+          weight: 100
