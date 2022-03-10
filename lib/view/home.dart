@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:test_ordo_mobile/controller/home.dart';
 import 'package:test_ordo_mobile/utils/theme/theme_color.dart';
+import 'package:test_ordo_mobile/view/base_view.dart';
 import 'package:test_ordo_mobile/view/dashboard.dart';
 import 'package:test_ordo_mobile/view/screen1.dart';
 import 'package:test_ordo_mobile/view/screen2.dart';
@@ -89,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _homeCt.page.listen((page) {
+      _homeCt.addPages(page);
       _homeCt.tabController.index = page;
       setState(() {});
     });
@@ -98,14 +100,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
+    return WillPopScope(
+      onWillPop: () async {
+        if (_homeCt.pagesClicked.length > 1) {
+          _homeCt.removePages();
+          return false;
+        }
+
+        return true;
+      },
+      child: BaseView(
         child: PersistentTabView(
           context,
           controller: _homeCt.tabController,
           screens: _buildScreens(),
           items: _navBarsItems(),
           backgroundColor: Colors.white,
+          handleAndroidBackButtonPress: false,
           onItemSelected: (index) => _homeCt.page(index),
           popAllScreensOnTapOfSelectedTab: true,
           popActionScreens: PopActionScreensType.all,
