@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:test_ordo_mobile/controller/dashboard.dart';
 import 'package:test_ordo_mobile/controller/detail_produk.dart';
 import 'package:test_ordo_mobile/model/product.dart';
 import 'package:test_ordo_mobile/utils/theme/theme_text_style.dart';
+import 'package:test_ordo_mobile/view/base_view.dart';
 import 'package:test_ordo_mobile/view/checkout.dart';
 
 class DetailProdukScreen extends StatefulWidget {
@@ -19,8 +19,6 @@ class DetailProdukScreen extends StatefulWidget {
 }
 
 class _DetailProdukScreenState extends State<DetailProdukScreen> {
-  final DashboardController _dashboardCt = Get.find();
-
   final _detailProdukCt = Get.put(DetailProdukController());
 
   Widget _imagePageIndicator() {
@@ -121,7 +119,7 @@ class _DetailProdukScreenState extends State<DetailProdukScreen> {
                     _containerText('Barang Bekas', 10, Color(0xffDFAE1D))
                   ],
                   SizedBox(width: 8,),
-                  _containerText('${widget.product.stok}', 10, Color(0xff64A1F4))
+                  _containerText('Stok ${widget.product.stok}', 10, Color(0xff64A1F4))
                 ],
               ),
               SizedBox(height: 6,),
@@ -248,20 +246,20 @@ class _DetailProdukScreenState extends State<DetailProdukScreen> {
 
   @override
   void dispose() {
-    super.dispose();
-
     Get.delete<DetailProdukController>();
+
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(() => Column(
-          children: [
-            _appbar.paddingSymmetric(horizontal: 16).marginSymmetric(vertical: 14),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
+    return BaseView(
+      child: Column(
+        children: [
+          _appbar.paddingSymmetric(horizontal: 16).marginSymmetric(vertical: 14),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Obx(() => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _imagePageView(),
@@ -272,9 +270,9 @@ class _DetailProdukScreenState extends State<DetailProdukScreen> {
                   ],
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

@@ -15,16 +15,21 @@ class BaseView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _appBar = AppBar(
-      centerTitle: true,
-      title: appbarContent ?? Text(title ?? '', style: ThemeTextStyle.poppinsBold.copyWith(fontSize: 29.57, color: Color(0xff64A1F4))),
-      leading: appbarLeading ?? GestureDetector(
-        onTap: () => Get.back(),
-        child: SvgPicture.asset('assets/images/back_button.svg'),
-      ),
+      centerTitle: false,
+      backgroundColor: Color(0xfffafafa),
+      title: appbarContent ?? Text(title ?? '', style: ThemeTextStyle.poppinsBold.copyWith(fontSize: 18, color: Color(0xff64A1F4))),
+      leading: Row(
+        children: [
+          appbarLeading ?? GestureDetector(
+            onTap: () => Get.back(),
+            child: SvgPicture.asset('assets/images/back_button.svg', width: 24, height: 24, fit: BoxFit.contain,),
+          ),
+        ],
+      ).marginOnly(left: 16),
     );
 
     return Scaffold(
-      backgroundColor: Color(0xFFe5e5e5).withOpacity(0.1),
+      backgroundColor: Color(0xfffafafa),
       appBar: isUseAppbar ? _appBar as PreferredSizeWidget? : null,
       resizeToAvoidBottomInset: true,
       body: SafeArea(

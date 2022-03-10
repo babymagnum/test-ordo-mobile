@@ -122,8 +122,8 @@ class DashboardScreen extends StatelessWidget {
 
   Widget _itemProduct(Product product, context) {
     return GestureDetector(
-      onTap: () => pushNewScreen(context, screen: DetailProdukScreen(product: product,), withNavBar: true),
-      // onTap: () => Get.to(DetailProdukScreen(product: product)),
+      onTap: () => pushNewScreen(context, screen: DetailProdukScreen(product: product), withNavBar: true),
+      // onTap: () => Get.to(() => DetailProdukScreen(product: product)),
       child: Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(

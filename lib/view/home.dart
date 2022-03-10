@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:test_ordo_mobile/controller/home.dart';
 import 'package:test_ordo_mobile/utils/theme/theme_color.dart';
 import 'package:test_ordo_mobile/view/dashboard.dart';
 import 'package:test_ordo_mobile/view/screen1.dart';
@@ -17,8 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final PersistentTabController _tabController =
-      PersistentTabController(initialIndex: 2);
+  final _homeCt = Get.put(HomeController());
 
   List<Widget> _buildScreens() {
     return [
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'assets/images/assignment.svg',
           width: 25,
           height: 25,
-          color: _tabController.index == 0
+          color: _homeCt.tabController.index == 0
               ? ThemeColor.activeIcon
               : ThemeColor.inactiveIcon,
         ),
@@ -47,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'assets/images/swap_horiz.svg',
           width: 25,
           height: 25,
-          color: _tabController.index == 1
+          color: _homeCt.tabController.index == 1
               ? ThemeColor.activeIcon
               : ThemeColor.inactiveIcon,
         ),
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'assets/images/home_alt_fill.svg',
           width: 25,
           height: 25,
-          color: _tabController.index == 2
+          color: _homeCt.tabController.index == 2
               ? ThemeColor.activeIcon
               : ThemeColor.inactiveIcon,
         ),
@@ -67,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'assets/images/assessment.svg',
           width: 25,
           height: 25,
-          color: _tabController.index == 3
+          color: _homeCt.tabController.index == 3
               ? ThemeColor.activeIcon
               : ThemeColor.inactiveIcon,
         ),
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'assets/images/person.svg',
           width: 25,
           height: 25,
-          color: _tabController.index == 4
+          color: _homeCt.tabController.index == 4
               ? ThemeColor.activeIcon
               : ThemeColor.inactiveIcon,
         ),
@@ -86,31 +87,28 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    _homeCt.page.listen((page) {
+      _homeCt.tabController.index = page;
+      setState(() {});
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: PersistentTabView(
           context,
-          controller: _tabController,
+          controller: _homeCt.tabController,
           screens: _buildScreens(),
           items: _navBarsItems(),
-          backgroundColor: Colors.white, // Default is Colors.white.
-          decoration: NavBarDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            colorBehindNavBar: Colors.white,
-          ),
-          onItemSelected: (index) => setState(() => _tabController.index = index),
+          backgroundColor: Colors.white,
+          onItemSelected: (index) => _homeCt.page(index),
           popAllScreensOnTapOfSelectedTab: true,
           popActionScreens: PopActionScreensType.all,
-          itemAnimationProperties: ItemAnimationProperties(
-            duration: Duration(milliseconds: 200),
-            curve: Curves.ease,
-          ),
-          screenTransitionAnimation: ScreenTransitionAnimation(
-            animateTabTransition: true,
-            curve: Curves.ease,
-            duration: Duration(milliseconds: 200),
-          ),
           navBarStyle: NavBarStyle.simple,
         ),
       ),

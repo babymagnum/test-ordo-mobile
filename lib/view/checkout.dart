@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:test_ordo_mobile/controller/checkout.dart';
+import 'package:test_ordo_mobile/utils/helper/constant.dart';
 import 'package:test_ordo_mobile/utils/theme/theme_text_style.dart';
 import 'package:test_ordo_mobile/view/base_view.dart';
 
@@ -197,8 +198,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return BaseView(
+      child: Column(
         children: [
           _appbar.paddingSymmetric(horizontal: 16).marginSymmetric(vertical: 14),
           Expanded(
@@ -337,16 +338,19 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(24, 7, 24, 6),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(1000),
-                              color: Color(0xff3C7DD9)
-                          ),
-                          child: Row(
-                            children: [
-                              Text('Bayar Sekarang', textAlign: TextAlign.center, style: ThemeTextStyle.poppinsSemiBold.copyWith(color: Colors.white, fontSize: 12),),
-                            ],
+                        GestureDetector(
+                          onTap: () => Get.toNamed(Routes.NICESO),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(24, 7, 24, 6),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(1000),
+                                color: Color(0xff3C7DD9)
+                            ),
+                            child: Row(
+                              children: [
+                                Text('Bayar Sekarang', textAlign: TextAlign.center, style: ThemeTextStyle.poppinsSemiBold.copyWith(color: Colors.white, fontSize: 12),),
+                              ],
+                            ),
                           ),
                         ),
                       ],
